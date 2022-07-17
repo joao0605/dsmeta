@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NotificationButton from '../NotificationButton';
 import './styles.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 
 function SalesCard() {
@@ -13,7 +14,12 @@ function SalesCard() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
-  
+    useEffect(() => {
+        axios.get("http://localhost:8080/sales")
+        .then(response => {
+            console.log(response.data);
+        })
+    }, [])
     return (
 
         <div className="dsmeta-card">
@@ -60,7 +66,7 @@ function SalesCard() {
                             <td>R$ 55300.00</td>
                             <td>
                                 <div className="dsmeta-red-btn-container">
-                                    <NotificationButton />
+                                    <NotificationButton/>
                                 </div>
                             </td>
                         </tr>
@@ -73,7 +79,7 @@ function SalesCard() {
                             <td>R$ 55300.00</td>
                             <td>
                                 <div className="dsmeta-red-btn-container">
-                                    <NotificationButton />
+                                    <NotificationButton/>
                                 </div>
                             </td>                                </tr>
                         <tr>
@@ -85,9 +91,10 @@ function SalesCard() {
                             <td>R$ 55300.00</td>
                             <td>
                                 <div className="dsmeta-red-btn-container">
-                                    <NotificationButton />
+                                    <NotificationButton/>
                                 </div>
-                            </td>                                </tr>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
